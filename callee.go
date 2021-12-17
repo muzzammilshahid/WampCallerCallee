@@ -46,5 +46,5 @@ func callee() {
 func result(ctx context.Context, inv *wamp.Invocation) client.InvokeResult {
 	log.Println("event receive")
 
-	return client.InvokeResult{Args: wamp.List{inv}}
+	return client.InvokeResult{Args: wamp.List{}}
 }
