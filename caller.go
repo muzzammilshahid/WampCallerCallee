@@ -9,14 +9,14 @@ import (
 	"time"
 )
 
-func caller() {
+func caller(url string, proc string) {
 	logger := log.New(os.Stderr, "CALLER> ", 0)
 
 	cfg := client.Config{
 		Realm:  "realm1",
 		Logger: logger,
 	}
-	caller, err := client.ConnectNet(context.Background(), "ws://192.168.100.2:8080/ws", cfg)
+	caller, err := client.ConnectNet(context.Background(), url, cfg)
 	if err != nil {
 		logger.Fatal(err)
 	}
@@ -28,7 +28,7 @@ func caller() {
 	start := time.Now()
 
 	for i := 1; i < 1000; i++ {
-		result, err := caller.Call(ctx, procedureName, nil, callArgs, nil, nil)
+		result, err := caller.Call(ctx, proc, nil, callArgs, nil, nil)
 		if err != nil {
 			logger.Fatal(err)
 		}
